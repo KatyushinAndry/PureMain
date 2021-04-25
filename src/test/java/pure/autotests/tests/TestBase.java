@@ -1,12 +1,12 @@
-package cloud.autotests.tests;
+package pure.autotests.tests;
 
 import io.qameta.allure.junit5.AllureJunit5;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static cloud.autotests.helpers.AttachmentsHelper.*;
-import static cloud.autotests.helpers.DriverHelper.*;
+import static pure.autotests.helpers.AttachmentsHelper.*;
+import static pure.autotests.helpers.DriverHelper.*;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 @ExtendWith({AllureJunit5.class})

@@ -1,8 +1,7 @@
-package cloud.autotests.helpers;
+package pure.autotests.helpers;
 
+import pure.autotests.config.DriverConfig;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import cloud.autotests.config.DriverConfig;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -20,50 +19,52 @@ import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class DriverHelper {
 
-    private static DriverConfig getDriverConfig() {
+    private static DriverConfig getDriverConfig(){
         return ConfigFactory.newInstance().create(DriverConfig.class, System.getProperties());
     }
 
-    public static String getWebMobile() {
+    public static String getWebMobile(){
         return getDriverConfig().webBrowserMobileView();
     }
 
-    public static boolean isWebMobile() {
+    public static boolean isWebMobile(){
         return !getWebMobile().equals("");
     }
 
 
-    public static String getWebRemoteDriver() {
+    public static String getWebRemoteDriver(){
         // https://%s:%s@selenoid.autotests.cloud/wd/hub/
         return String.format(getDriverConfig().webRemoteDriverUrl(),
                 getDriverConfig().webRemoteDriverUser(),
                 getDriverConfig().webRemoteDriverPassword());
     }
 
-    public static boolean isRemoteWebDriver() {
+    public static boolean isRemoteWebDriver(){
         return !getDriverConfig().webRemoteDriverUrl().equals("");
     }
 
-    public static String getVideoUrl() {
+    public static String getVideoUrl(){
         return getDriverConfig().videoStorage();
     }
 
-    public static boolean isVideoOn() {
+    public static boolean isVideoOn(){
         return !getVideoUrl().equals("");
     }
 
     public static String getSessionId(){
-        return ((RemoteWebDriver) getWebDriver()).getSessionId().toString().replace("selenoid","");
+        return ( (RemoteWebDriver) getWebDriver() ).getSessionId().toString().replace("selenoid", "");
     }
 
-    public static String getConsoleLogs() {
+    public static String getConsoleLogs(){
         return join("\n", getWebDriverLogs(BROWSER));
     }
 
-    public static void configureDriver() {
+    public static void configureDriver(){
+        Configuration.startMaximized = true;
         addListener("AllureSelenide", new AllureSelenide());
 
 //        Configuration.baseUrl = TestData.getWebUrl();
+
         Configuration.browser = getDriverConfig().webBrowser();
         Configuration.browserVersion = getDriverConfig().webBrowserVersion();
         Configuration.browserSize = getDriverConfig().webBrowserSize();

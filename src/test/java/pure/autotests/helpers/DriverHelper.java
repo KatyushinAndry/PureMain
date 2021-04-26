@@ -82,7 +82,8 @@ public class DriverHelper {
         if (isRemoteWebDriver()) {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
-            Configuration.remote = getWebRemoteDriver();
+           // Configuration.remote = getWebRemoteDriver();
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
         }
 
         Configuration.browserCapabilities = capabilities;

@@ -4,13 +4,14 @@ plugins {
 }
 
 repositories {
-    maven {url = "https://dl.bintray.com/qameta/maven-unstable/"}
+    maven { url = "https://dl.bintray.com/qameta/maven-unstable/" }
     mavenCentral()
 }
 
 def allureVersion = "2.13.9",
     selenideVersion = "5.20.1",
-    junitVersion = "5.7.1"
+    junitVersion = "5.7.1",
+    choice = System.getProperty("tags")
 
 allure {
     version = allureVersion
@@ -71,8 +72,29 @@ task ui(type: Test) {
     }
 }
 
-task api(type: Test) {
+task functional (type: Test) {
     useJUnitPlatform {
-        includeTags 'api'
+        includeTags 'functional'
+    }
+}
+task smoke(type: Test) {
+    useJUnitPlatform {
+        includeTags 'smoke'
+    }
+}
+
+task regress(type: Test) {
+    useJUnitPlatform {
+        includeTags 'regress'
+    }
+}
+
+test {
+    useJUnitPlatform {
+        if (choice == "smoke") {
+            includeTags "smoke"
+        } else if (choice == "regress") {
+            includeTags "regress"
+        } else includeTags "smoke", "regress"
     }
 }

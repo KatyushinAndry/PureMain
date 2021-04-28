@@ -1,6 +1,7 @@
 package pure.autotests.tests.pureweb;
 
 import com.codeborne.selenide.Configuration;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -24,7 +25,7 @@ public class MainPageTests extends TestBase {
 
     @BeforeAll
     static void configureBaseUrl(){
-//        RestAssured.baseURI = TestData.getApiUrl();
+        RestAssured.baseURI = TestData.getApiUrl();
         Configuration.baseUrl = TestData.getWebUrl();
     }
 

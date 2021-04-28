@@ -39,7 +39,6 @@ public class DriverHelper {
         return String.format(getDriverConfig().webRemoteDriverUrl(),
                 getDriverConfig().webRemoteDriverUser(),
                 getDriverConfig().webRemoteDriverPassword());
-
     }
 
     //-----------------------------------------------------------------------------------------------------------------
@@ -69,7 +68,7 @@ public class DriverHelper {
     }
 
     public static void configureDriver(){
-//        Configuration.startMaximized = true;
+        Configuration.startMaximized = true;
         addListener("AllureSelenide", new AllureSelenide());
 
 //        Configuration.baseUrl = TestData.getWebUrl();
@@ -77,7 +76,6 @@ public class DriverHelper {
         Configuration.browser = getDriverConfig().webBrowser();
         Configuration.browserVersion = getDriverConfig().webBrowserVersion();
         Configuration.browserSize = getDriverConfig().webBrowserSize();
-        Configuration.timeout = 4000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 

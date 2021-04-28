@@ -99,6 +99,6 @@ test {
         } else includeTags "smoke", "regress"
     }
 }
-test {
-    systemProperties(System.getProperties())
-}
+//test {
+//    systemProperties(System.getProperties())
+//}

@@ -1,12 +1,12 @@
 package pure.autotests.helpers;
 
-import pure.autotests.config.DriverConfig;
 import com.codeborne.selenide.Configuration;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import pure.autotests.config.DriverConfig;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +18,8 @@ import static java.lang.String.join;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 
 public class DriverHelper {
+
+    private static final DriverConfig driverConfig = ConfigFactory.create(DriverConfig.class, System.getProperties());
 
     private static DriverConfig getDriverConfig(){
         return ConfigFactory.newInstance().create(DriverConfig.class, System.getProperties());
@@ -37,11 +39,18 @@ public class DriverHelper {
         return String.format(getDriverConfig().webRemoteDriverUrl(),
                 getDriverConfig().webRemoteDriverUser(),
                 getDriverConfig().webRemoteDriverPassword());
+
     }
 
+    //-----------------------------------------------------------------------------------------------------------------
     public static boolean isRemoteWebDriver(){
+//        return  !getDriverConfig().webBrowserIsRemote();
         return !getDriverConfig().webRemoteDriverUrl().equals("");
     }
+
+//    public static boolean isRemoteWebDriver() {
+//        return driverConfig.webBrowserIsRemote();}
+
 
     public static String getVideoUrl(){
         return getDriverConfig().videoStorage();
@@ -60,7 +69,7 @@ public class DriverHelper {
     }
 
     public static void configureDriver(){
-        Configuration.startMaximized = true;
+//        Configuration.startMaximized = true;
         addListener("AllureSelenide", new AllureSelenide());
 
 //        Configuration.baseUrl = TestData.getWebUrl();
@@ -68,6 +77,7 @@ public class DriverHelper {
         Configuration.browser = getDriverConfig().webBrowser();
         Configuration.browserVersion = getDriverConfig().webBrowserVersion();
         Configuration.browserSize = getDriverConfig().webBrowserSize();
+        Configuration.timeout = 4000;
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 

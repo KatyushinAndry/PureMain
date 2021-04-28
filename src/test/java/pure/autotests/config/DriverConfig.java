@@ -13,6 +13,9 @@ public interface DriverConfig extends Config {
     @Key("web.browser")
     String webBrowser();
 
+    @Key("web.browser.is.remote")
+    boolean webBrowserIsRemote();
+
     @Key("web.browser.version")
     String webBrowserVersion();
 

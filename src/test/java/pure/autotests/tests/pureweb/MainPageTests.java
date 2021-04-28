@@ -34,7 +34,7 @@ public class MainPageTests extends TestBase {
     @Tag("smoke")
     @DisplayName("Console log should not have any errors")
     void consoleLogShouldNotHaveErrors(){
-        step("Open main page", () -> open(""));
+        step("Open main page", () -> open("" + System.getProperty("web.remote.driver.user")));
 
         step("Page should not have errors (SEVERE) in console", () -> {
             String consoleLogs = getConsoleLogs();

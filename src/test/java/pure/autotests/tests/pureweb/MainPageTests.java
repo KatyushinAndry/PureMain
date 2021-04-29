@@ -29,18 +29,18 @@ public class MainPageTests extends TestBase {
         Configuration.baseUrl = TestData.getWebUrl();
     }
 
-    @Test
-    @Tag("functional")
-    @Tag("smoke")
-    @DisplayName("Console log should not have any errors")
-    void consoleLogShouldNotHaveErrors(){
-        step("Open main page", () -> open(""));
-
-        step("Page should not have errors (SEVERE) in console", () -> {
-            String consoleLogs = getConsoleLogs();
-            assertThat(consoleLogs, not(containsString("SEVERE")));
-        });
-    }
+//    @Test
+//    @Tag("functional")
+//    @Tag("smoke")
+//     @DisplayName("Console log should not have any errors")
+//    void consoleLogShouldNotHaveErrors(){
+//        step("Open main page", () -> open(""));
+//
+//        step("Page should not have errors (SEVERE) in console", () -> {
+//            String consoleLogs = getConsoleLogs();
+//            assertThat(consoleLogs, not(containsString("SEVERE")));
+//        });
+//    }
 
 
     @Test

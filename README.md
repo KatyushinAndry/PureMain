@@ -24,3 +24,4 @@ https://jenkins.autotests.cloud/job/c05-a_katan-PureMain/
 
 ### Telegram
 ![Telegram](src/test/resources/img/telegram.png)
+![Telegram](src/test/resources/img/telegram2.png)
